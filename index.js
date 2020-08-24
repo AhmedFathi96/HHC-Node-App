@@ -7,7 +7,7 @@ var bodyParser = require('body-parser')
 
 
 const app = express()
-const port = process.env.PORT || 6026
+const port = process.env.PORT || 6100
 
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -26,15 +26,14 @@ app.post('/', (req, res) =>  {
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
 
-// var app = express();
 Connect();
 
 
 
 
-// app.get('/', function (req, res) {
-//     res.send('Hello World!');
-// });
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+});
 
 
 
@@ -73,7 +72,7 @@ app.use('/api/gallery', galleryRouter)
 app.use('/api/features', featureRouter)
 app.use('/api/projects', projectRouter)
 app.use('/api/contact', contactRouter)
-app.use('/api/courses', courseRouter)
+// app.use('/api/courses', courseRouter)
 app.use('/api/pages', pagesRouter)
 app.use('/api/info', infoRouter)
 app.use('/api/statistics', statisticsRouter)

@@ -5,38 +5,78 @@ const feature = mongoose.Schema({
     feature_img:{
         type: Buffer 
     },
-    header: {
+    english_header: {
         type: String,
         required: true
     },
-    header_font_size: {
+    arabic_header: {
         type: String,
         required: true
     },
-    header_font_wight: {
+
+    desktop_header_font_size: {
         type: String,
         required: true
     },
-    header_font_color: {
+    desktop_header_font_wight: {
         type: String,
         required: true
     },
-    sub_header: {
+    desktop_header_font_color: {
         type: String,
         required: true
     },
-    sub_header_font_size: {
+    mobile_header_font_size: {
         type: String,
         required: true
     },
-    sub_header_font_wight: {
+    mobile_header_font_wight: {
         type: String,
         required: true
     },
-    sub_header_font_color: {
+    mobile_header_font_color: {
         type: String,
         required: true
     },
+
+
+
+    english_sub_header: {
+        type: String,
+        required: true
+    },
+    arabic_sub_header: {
+        type: String,
+        required: true
+    },
+
+    desktop_sub_header_font_size: {
+        type: String,
+        required: true
+    },
+    desktop_sub_header_font_wight: {
+        type: String,
+        required: true
+    },
+    desktop_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
+
+    mobile_sub_header_font_size: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_wight: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
     order:{
         type: Number,
         required: true

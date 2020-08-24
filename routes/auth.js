@@ -6,7 +6,6 @@ const auth     = require('../middleware/auth');
 router.post('/login', async(req,res)=>{
     
     try{
-        console.log('login info ==>' ,req.body)
         const admin_info = await admin.findUserByCredentials(req.body.email , req.body.password);
         const token      = await admin_info.generateToken();
         res.status(200).send({

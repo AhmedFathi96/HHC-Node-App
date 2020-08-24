@@ -5,41 +5,73 @@ const statistic = mongoose.Schema({
     statistic_img:{
         type: Buffer 
     },
-
-    number: {
-        type: String,
-        required: true
-    },
-    number_font_size: {
-        type: String,
-        required: true
-    },
-    number_font_wight: {
-        type: String,
-        required: true
-    },
-    number_font_color: {
+    header: {
         type: String,
         required: true
     },
 
+    desktop_header_font_size: {
+        type: String,
+        required: true
+    },
+    desktop_header_font_wight: {
+        type: String,
+        required: true
+    },
+    desktop_header_font_color: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_size: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_wight: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_color: {
+        type: String,
+        required: true
+    },
 
-    name: {
+
+
+    english_sub_header: {
         type: String,
         required: true
     },
-    name_font_size: {
+    arabic_sub_header: {
         type: String,
         required: true
     },
-    name_font_wight: {
+    desktop_sub_header_font_size: {
         type: String,
         required: true
     },
-    name_font_color: {
+    desktop_sub_header_font_wight: {
         type: String,
         required: true
     },
+    desktop_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
+
+    mobile_sub_header_font_size: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_wight: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
     order:{
         type: Number,
         required: true

@@ -24,18 +24,23 @@ router.post('/add-feature', auth , upload.single('feature_img') ,async(req,res)=
         const buffer = await sharp(req.file.buffer).toBuffer()
         const data = new feature({
             feature_img:buffer,
-            header: req.body.header,
-
-            header_font_size: req.body.header_font_size,
-            header_font_wight: req.body.header_font_wight,
-            header_font_color: req.body.header_font_color,
-
+            english_header: req.body.english_header,
+            arabic_header: req.body.arabic_header,
+            desktop_header_font_size: req.body.desktop_header_font_size,
+            desktop_header_font_wight: req.body.desktop_header_font_wight,
+            desktop_header_font_color: req.body.desktop_header_font_color,
+            mobile_header_font_size: req.body.mobile_header_font_size,
+            mobile_header_font_wight: req.body.mobile_header_font_wight,
+            mobile_header_font_color: req.body.mobile_header_font_color,
             order: req.body.order,
-
-            sub_header:req.body.sub_header,
-            sub_header_font_size: req.body.sub_header_font_size,
-            sub_header_font_wight: req.body.sub_header_font_wight,
-            sub_header_font_color: req.body.sub_header_font_color,
+            english_sub_header:req.body.english_sub_header,
+            arabic_sub_header:req.body.arabic_sub_header,
+            desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+            desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+            desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+            mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+            mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+            mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
         })
 
         await data.save();
@@ -138,19 +143,27 @@ router.put('/update-feature/:id', auth , upload.single('feature_img'), async (re
         const data = await feature.findByIdAndUpdate(
             id, 
             {
-                feature_img:buffer,
-                header: req.body.header,
+                feature_img: req.file.buffer,
 
-                header_font_size: req.body.header_font_size,
-                header_font_wight: req.body.header_font_wight,
-                header_font_color: req.body.header_font_color,
+                english_header: req.body.english_header,
+                arabic_header: req.body.arabic_header,
+                desktop_header_font_size: req.body.desktop_header_font_size,
+                desktop_header_font_wight: req.body.desktop_header_font_wight,
+                desktop_header_font_color: req.body.desktop_header_font_color,
+                mobile_header_font_size: req.body.mobile_header_font_size,
+                mobile_header_font_wight: req.body.mobile_header_font_wight,
+                mobile_header_font_color: req.body.mobile_header_font_color,
 
                 order: req.body.order,
-            
-                sub_header:req.body.sub_header,
-                sub_header_font_size: req.body.sub_header_font_size,
-                sub_header_font_wight: req.body.sub_header_font_wight,
-                sub_header_font_color: req.body.sub_header_font_color,
+
+                english_sub_header:req.body.english_sub_header,
+                arabic_sub_header:req.body.arabic_sub_header,
+                desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+                desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+                desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+                mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+                mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+                mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
             
             },
             {new:true , runValidators:true , useFindAndModify:false}

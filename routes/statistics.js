@@ -2,7 +2,7 @@ const express = require('express')
 const router  = express.Router();
 const auth    = require('../middleware/auth');
 const multer  = require('multer');
-const statistic  = require('../models/statistic'); 
+const statistic  = require('../models/statistics'); 
 const sharp   = require('sharp')
 
 
@@ -24,18 +24,22 @@ router.post('/add-statistic', auth , upload.single('statistic_img') ,async(req,r
         const buffer = await sharp(req.file.buffer).toBuffer()
         const data = new statistic({
             statistic_img:buffer,
-
-            number: req.body.caption,
-            number_font_size: req.body.caption_font_size,
-            number_font_wight: req.body.caption_font_wight,
-            number_font_color: req.body.caption_font_color,
-
+            header: req.body.header,
+            desktop_header_font_size: req.body.desktop_header_font_size,
+            desktop_header_font_wight: req.body.desktop_header_font_wight,
+            desktop_header_font_color: req.body.desktop_header_font_color,
+            mobile_header_font_size: req.body.mobile_header_font_size,
+            mobile_header_font_wight: req.body.mobile_header_font_wight,
+            mobile_header_font_color: req.body.mobile_header_font_color,
             order: req.body.order,
-
-            name:req.body.name,
-            name_font_size: req.body.name_font_size,
-            name_font_wight: req.body.name_font_wight,
-            name_font_color: req.body.name_font_color,
+            english_sub_header:req.body.english_sub_header,
+            arabic_sub_header:req.body.arabic_sub_header,
+            desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+            desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+            desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+            mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+            mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+            mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
         })
 
         await data.save();
@@ -140,19 +144,23 @@ router.put('/update-statistic/:id', auth , upload.single('statistic_img'), async
         const data = await statistic.findByIdAndUpdate(
             id, 
             {
-                statistic_img:buffer,
-
-                number: req.body.caption,
-                number_font_size: req.body.caption_font_size,
-                number_font_wight: req.body.caption_font_wight,
-                number_font_color: req.body.caption_font_color,
-
+                statistic_img: req.file.buffer,
+                header: req.body.header,
+                desktop_header_font_size: req.body.desktop_header_font_size,
+                desktop_header_font_wight: req.body.desktop_header_font_wight,
+                desktop_header_font_color: req.body.desktop_header_font_color,
+                mobile_header_font_size: req.body.mobile_header_font_size,
+                mobile_header_font_wight: req.body.mobile_header_font_wight,
+                mobile_header_font_color: req.body.mobile_header_font_color,
                 order: req.body.order,
-
-                name:req.body.name,
-                name_font_size: req.body.name_font_size,
-                name_font_wight: req.body.name_font_wight,
-                name_font_color: req.body.name_font_color,
+                english_sub_header:req.body.english_sub_header,
+                arabic_sub_header:req.body.arabic_sub_header,
+                desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+                desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+                desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+                mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+                mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+                mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
             
             },
             {new:true , runValidators:true , useFindAndModify:false}
