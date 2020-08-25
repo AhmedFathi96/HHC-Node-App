@@ -5,38 +5,79 @@ const slider = mongoose.Schema({
     slider_img:{
         type: Buffer 
     },
-    caption: {
+    
+    english_header: {
         type: String,
         required: true
     },
-    caption_font_size: {
+    arabic_header: {
         type: String,
         required: true
     },
-    caption_font_wight: {
+
+    desktop_header_font_size: {
         type: String,
         required: true
     },
-    caption_font_color: {
+    desktop_header_font_wight: {
         type: String,
         required: true
     },
-    sub_caption: {
+    desktop_header_font_color: {
         type: String,
         required: true
     },
-    sub_caption_font_size: {
+    mobile_header_font_size: {
         type: String,
         required: true
     },
-    sub_caption_font_wight: {
+    mobile_header_font_wight: {
         type: String,
         required: true
     },
-    sub_caption_font_color: {
+    mobile_header_font_color: {
         type: String,
         required: true
     },
+
+
+
+    english_sub_header: {
+        type: String,
+        required: true
+    },
+    arabic_sub_header: {
+        type: String,
+        required: true
+    },
+
+    desktop_sub_header_font_size: {
+        type: String,
+        required: true
+    },
+    desktop_sub_header_font_wight: {
+        type: String,
+        required: true
+    },
+    desktop_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
+
+    mobile_sub_header_font_size: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_wight: {
+        type: String,
+        required: true
+    },
+    mobile_sub_header_font_color: {
+        type: String,
+        required: true
+    },
+
     order:{
         type: Number,
         required: true

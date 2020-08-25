@@ -6,12 +6,38 @@ const gallery = mongoose.Schema({
         type: Buffer ,
         required: true
     },
-    height_ration:{
-        type: Number,
+    
+    english_header: {
+        type: String,
         required: true
     },
-    width_ration:{
-        type: Number,
+    arabic_header: {
+        type: String,
+        required: true
+    },
+
+    desktop_header_font_size: {
+        type: String,
+        required: true
+    },
+    desktop_header_font_wight: {
+        type: String,
+        required: true
+    },
+    desktop_header_font_color: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_size: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_wight: {
+        type: String,
+        required: true
+    },
+    mobile_header_font_color: {
+        type: String,
         required: true
     },
     order:{

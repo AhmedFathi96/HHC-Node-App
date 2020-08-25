@@ -1,6 +1,32 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const info = mongoose.Schema({
+
+    about_header:{
+        type: String,
+        required: true
+    },
+    gallery_header:{
+        type: String,
+        required: true
+    },
+    projects_header:{
+        type: String,
+        required: true
+    },
+    features_header:{
+        type: String,
+        required: true
+    },
+    statistics_header:{
+        type: String,
+        required: true
+    },
+    contact_header:{
+        type: String,
+        required: true
+    },
+
     address:{
         type: String,
         required: true
@@ -31,6 +57,10 @@ const info = mongoose.Schema({
         type: String,
         required: true,
     },
+    youtube_url:{                                  // Role could be infoistrator  or supervisor
+        type: String,
+        required: true,
+    },
     twitter_url:{                                  // Role could be infoistrator  or supervisor
         type: String,
         required: true,
@@ -43,6 +73,7 @@ const info = mongoose.Schema({
         type: String,
         required: true,
     },
+    
     footer_copyrights:{                                  // Role could be infoistrator  or supervisor
         type: String,
         required: true,

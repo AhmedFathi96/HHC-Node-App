@@ -24,18 +24,23 @@ router.post('/add-slider', auth , upload.single('slider_img') ,async(req,res)=>{
         const buffer = await sharp(req.file.buffer).toBuffer()
         const data = new slider({
             slider_img:buffer,
-            caption: req.body.caption,
-
-            caption_font_size: req.body.caption_font_size,
-            caption_font_wight: req.body.caption_font_wight,
-            caption_font_color: req.body.caption_font_color,
-
+            english_header: req.body.english_header,
+            arabic_header: req.body.arabic_header,
+            desktop_header_font_size: req.body.desktop_header_font_size,
+            desktop_header_font_wight: req.body.desktop_header_font_wight,
+            desktop_header_font_color: req.body.desktop_header_font_color,
+            mobile_header_font_size: req.body.mobile_header_font_size,
+            mobile_header_font_wight: req.body.mobile_header_font_wight,
+            mobile_header_font_color: req.body.mobile_header_font_color,
             order: req.body.order,
-
-            sub_caption:req.body.sub_caption,
-            sub_caption_font_size: req.body.sub_caption_font_size,
-            sub_caption_font_wight: req.body.sub_caption_font_wight,
-            sub_caption_font_color: req.body.sub_caption_font_color,
+            english_sub_header:req.body.english_sub_header,
+            arabic_sub_header:req.body.arabic_sub_header,
+            desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+            desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+            desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+            mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+            mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+            mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
         })
 
         await data.save();
@@ -140,19 +145,24 @@ router.put('/update-slider/:id', auth , upload.single('slider_img'), async (req,
         const data = await slider.findByIdAndUpdate(
             id, 
             {
-                slider_img:buffer,
-                caption: req.body.caption,
-
-                caption_font_size: req.body.caption_font_size,
-                caption_font_wight: req.body.caption_font_wight,
-                caption_font_color: req.body.caption_font_color,
-
+                slider_img: req.file.buffer,
+                english_header: req.body.english_header,
+                arabic_header: req.body.arabic_header,
+                desktop_header_font_size: req.body.desktop_header_font_size,
+                desktop_header_font_wight: req.body.desktop_header_font_wight,
+                desktop_header_font_color: req.body.desktop_header_font_color,
+                mobile_header_font_size: req.body.mobile_header_font_size,
+                mobile_header_font_wight: req.body.mobile_header_font_wight,
+                mobile_header_font_color: req.body.mobile_header_font_color,
                 order: req.body.order,
-            
-                sub_caption:req.body.sub_caption,
-                sub_caption_font_size: req.body.sub_caption_font_size,
-                sub_caption_font_wight: req.body.sub_caption_font_wight,
-                sub_caption_font_color: req.body.sub_caption_font_color,
+                english_sub_header:req.body.english_sub_header,
+                arabic_sub_header:req.body.arabic_sub_header,
+                desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+                desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+                desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+                mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+                mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+                mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
             
             },
             {new:true , runValidators:true , useFindAndModify:false}

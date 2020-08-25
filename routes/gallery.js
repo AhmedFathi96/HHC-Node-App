@@ -22,7 +22,18 @@ const upload = multer({
 router.post('/add-gallery-image', auth , upload.single('gallery_img') ,async(req,res)=>{
     try{
         const buffer = await sharp(req.file.buffer).toBuffer()
-        const data = new gallery({gallery_img:buffer , width_ration: req.body.width_ration ,height_ration: req.body.height_ration , order: req.body.order})
+        const data = new gallery({
+            gallery_img: buffer , 
+            english_header: req.body.english_header,
+            arabic_header: req.body.arabic_header,
+            desktop_header_font_size: req.body.desktop_header_font_size,
+            desktop_header_font_wight: req.body.desktop_header_font_wight,
+            desktop_header_font_color: req.body.desktop_header_font_color,
+            mobile_header_font_size: req.body.mobile_header_font_size,
+            mobile_header_font_wight: req.body.mobile_header_font_wight,
+            mobile_header_font_color: req.body.mobile_header_font_color,
+            order: req.body.order
+        })
 
         await data.save();
         res.status(200).send({
@@ -128,8 +139,14 @@ router.put('/update-gallery-image/:id', auth , upload.single('gallery_img'), asy
             id, 
             {
                 gallery_img:req.file.buffer,
-                height_ration: req.body.height_ration, 
-                width_ration: req.body.width_ration,
+                english_header: req.body.english_header,
+                arabic_header: req.body.arabic_header,
+                desktop_header_font_size: req.body.desktop_header_font_size,
+                desktop_header_font_wight: req.body.desktop_header_font_wight,
+                desktop_header_font_color: req.body.desktop_header_font_color,
+                mobile_header_font_size: req.body.mobile_header_font_size,
+                mobile_header_font_wight: req.body.mobile_header_font_wight,
+                mobile_header_font_color: req.body.mobile_header_font_color,
                 order: req.body.order
             },
             {new:true , runValidators:true , useFindAndModify:false}

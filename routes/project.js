@@ -3,6 +3,7 @@ const router  = express.Router();
 const auth    = require('../middleware/auth');
 const multer  = require('multer');
 const project  = require('../models/project'); 
+const sharp   = require('sharp')
 
 
 const upload = multer({
@@ -18,25 +19,28 @@ const upload = multer({
     }
 })
 
-router.post('/add-project', auth , upload.single('project_image') ,async(req,res)=>{
-
+router.post('/add-project', auth , upload.single('project_img') ,async(req,res)=>{
     try{
         const buffer = await sharp(req.file.buffer).toBuffer()
         const data = new project({
-            project_image:buffer,
-            name: req.body.name,
-            name_font_size: req.body.name_font_size,
-            name_font_wight: req.body.name_font_wight,
-            name_font_color: req.body.name_font_color,
-            header_description: req.body.header_description,
-            header_description_font_size: req.body.header_description_font_size,
-            header_description_font_wight: req.body.header_description_font_wight,
-            header_description_font_color: req.body.header_description_font_color,
-            full_description:req.body.full_description,
-            full_description_font_size: req.body.full_description_font_size,
-            full_description_font_wight: req.body.full_description_font_wight,
-            full_description_font_color: req.body.full_description_font_color,
-            order: req.body.order
+            project_img:buffer,
+            english_header: req.body.english_header,
+            arabic_header: req.body.arabic_header,
+            desktop_header_font_size: req.body.desktop_header_font_size,
+            desktop_header_font_wight: req.body.desktop_header_font_wight,
+            desktop_header_font_color: req.body.desktop_header_font_color,
+            mobile_header_font_size: req.body.mobile_header_font_size,
+            mobile_header_font_wight: req.body.mobile_header_font_wight,
+            mobile_header_font_color: req.body.mobile_header_font_color,
+            order: req.body.order,
+            english_sub_header:req.body.english_sub_header,
+            arabic_sub_header:req.body.arabic_sub_header,
+            desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+            desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+            desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+            mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+            mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+            mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
         })
 
         await data.save();
@@ -52,8 +56,7 @@ router.post('/add-project', auth , upload.single('project_image') ,async(req,res
     }
 })
 
-
-router.get('/website-get-projects' , async(req,res)=>{
+router.get('/get-projects', auth , async(req,res)=>{
     
     try{
         const data = await project.find({});
@@ -68,7 +71,8 @@ router.get('/website-get-projects' , async(req,res)=>{
         });
     }
 })
-router.get('/get-projects', auth , async(req,res)=>{
+
+router.get('/website-get-projects' , async(req,res)=>{
     
     try{
         const data = await project.find({});
@@ -101,14 +105,13 @@ router.get('/get-project/:id', auth , async(req,res)=>{
 })
 
 
-
 router.get('/get-project-image/:id/view' , async(req,res)=>{
     
     try{
         const id = req.params.id
         const data = await project.findById(id);
         res.set('Content-type' , 'image/jpg');
-        res.send(data.project_image);
+        res.send(data.project_img);
     }catch(e){
         res.status(400).send({
             status:'Error',
@@ -118,26 +121,49 @@ router.get('/get-project-image/:id/view' , async(req,res)=>{
     }
 })
 
-router.put('/update-project/:id', auth ,upload.single('project_image'), async (req,res)=>{
+router.get('/website-get-project-image/:id/view' , async(req,res)=>{
+    
+    try{
+        const id = req.params.id
+        const data = await project.findById(id);
+        res.set('Content-type' , 'image/jpg');
+        res.send(data.project_img);
+    }catch(e){
+        res.status(400).send({
+            status:'Error',
+            status:'Error',
+            Error: e
+        });
+    }
+})
+
+router.put('/update-project/:id', auth , upload.single('project_img'), async (req,res)=>{
     try{
         const id = req.params.id;
         const data = await project.findByIdAndUpdate(
             id, 
             {
-                project_image:buffer,
-                name: req.body.name,
-                name_font_size: req.body.name_font_size,
-                name_font_wight: req.body.name_font_wight,
-                name_font_color: req.body.name_font_color,
-                header_description: req.body.header_description,
-                header_description_font_size: req.body.header_description_font_size,
-                header_description_font_wight: req.body.header_description_font_wight,
-                header_description_font_color: req.body.header_description_font_color,
-                full_description:req.body.full_description,
-                full_description_font_size: req.body.full_description_font_size,
-                full_description_font_wight: req.body.full_description_font_wight,
-                full_description_font_color: req.body.full_description_font_color,
-                order: req.body.order
+                project_img: req.file.buffer,
+
+                english_header: req.body.english_header,
+                arabic_header: req.body.arabic_header,
+                desktop_header_font_size: req.body.desktop_header_font_size,
+                desktop_header_font_wight: req.body.desktop_header_font_wight,
+                desktop_header_font_color: req.body.desktop_header_font_color,
+                mobile_header_font_size: req.body.mobile_header_font_size,
+                mobile_header_font_wight: req.body.mobile_header_font_wight,
+                mobile_header_font_color: req.body.mobile_header_font_color,
+
+                order: req.body.order,
+
+                english_sub_header:req.body.english_sub_header,
+                arabic_sub_header:req.body.arabic_sub_header,
+                desktop_sub_header_font_size: req.body.desktop_sub_header_font_size,
+                desktop_sub_header_font_wight: req.body.desktop_sub_header_font_wight,
+                desktop_sub_header_font_color: req.body.desktop_sub_header_font_color,
+                mobile_sub_header_font_size: req.body.mobile_sub_header_font_size,
+                mobile_sub_header_font_wight: req.body.mobile_sub_header_font_wight,
+                mobile_sub_header_font_color: req.body.mobile_sub_header_font_color,
             
             },
             {new:true , runValidators:true , useFindAndModify:false}
@@ -166,6 +192,7 @@ router.delete('/delete-project/:id',auth , async(req,res)=>{
     
     try{
         const id = req.params.id
+        console.log('id==>' , id)
         const data = await project.findByIdAndDelete(id);
         if(!data){
             res.status(400).send({
